@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 
-def plot_grid(file_name, title):
+def plot_grid(file_name, title,savename):
     """
     Plot the interpolated grid from a CSV file.
     
@@ -33,7 +33,7 @@ def plot_grid(file_name, title):
         ax.set_zlabel('Z')
         
         # Show the plot
-        plt.show()
+        plt.savefig(savename)
     except Exception as e:
         print("Error plotting grid:", e)
         with open('error_log.txt', 'a') as f:
@@ -41,5 +41,19 @@ def plot_grid(file_name, title):
             f.write(traceback.format_exc() + "\n")
         raise
 
-# Example usage
-plot_grid("rbf_output.csv", "RBF Interpolated Grid")
+def main():
+    # Plot the rbf interpolated grid for the no bump data
+    grid_file = 'rbf/no_bump/grid_rbf_no_bump.csv'
+    plot_grid(grid_file, 'RBF Interpolated Grid - No Bump', 'rbf/no_bump/rbf_no_bump.png')
+
+    #Plot the uk interpolated grid for the no bump data
+    grid_file = 'uk/no_bump/grid_uk_no_bump.csv'
+    plot_grid(grid_file, 'UK Interpolated Grid - No Bump', 'uk/no_bump/uk_no_bump.png')
+
+    #plot the ok interpolated grid for the no bump data
+    grid_file = 'ok/no_bump/grid_ok_no_bump.csv'
+    plot_grid(grid_file, 'OK Interpolated Grid - No Bump', 'ok/no_bump/ok_no_bump.png')
+
+if __name__ == '__main__':
+    main()
+

@@ -38,41 +38,30 @@ def save_model(rbf, file_path):
             f.write(error_message)
         print("Failed to save the model. Error message saved in error_log.txt.")
 
-def plot_mesh_grid(x, y):
-    # Load the RBF model from the pkl file
-    with open('rbf_model.pkl', 'rb') as f:
-        rbf_model = pickle.load(f)
-        
-    file_path = 'formatted_data.csv'
-    x, y, z = load_data(file_path)
-
-    # Define the grid for interpolation
-    grid_x, grid_y = np.meshgrid(np.linspace(min(x), max(x), 100), np.linspace(min(y), max(y), 100))
-
-    # Interpolate the grid
-    z_rbf = rbf_model(grid_x, grid_y)
-
-    # Plot the mesh grid
-    plt.figure()
-    plt.pcolormesh(grid_x, grid_y, z_rbf, shading='auto')
-    plt.colorbar()
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.title('Interpolated Mesh Grid')
-    plt.show()
-
 def main():
     # Load data
-    file_path = 'formatted_data.csv'
+    file_path = 'formatted_data_no_bump.csv'
     x, y, z = load_data(file_path)
 
     # Perform RBF Interpolation
     rbf = perform_rbf_interpolation(x, y, z)
 
+    # Define the grid for interpolation
+    grid_x, grid_y = np.meshgrid(np.linspace(min(x), max(x), 100), np.linspace(min(y), max(y), 100))
+
     if rbf is not None:
+         # Interpolate the grid
+        z_rbf = rbf(grid_x, grid_y)
         # Save the model
-        model_file_path = 'rbf_model.pkl'
+        model_file_path = 'rbf/no_bump/rbf_model_no_bump.pkl'
         save_model(rbf, model_file_path)
+        # Save the grid_x, grid_y, and z_rbf to files
+        np.save('rbf/no_bump/grid_x_no_bump.npy', grid_x)
+        np.save('rbf/no_bump/grid_y_no_bump.npy', grid_y)
+        np.save('rbf/no_bump/z_rbf_no_bump.npy', z_rbf)
+
+       
+
 
 
 
