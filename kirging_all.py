@@ -5,9 +5,10 @@ from pykrige.uk import UniversalKriging
 from pykrige.rk import RegressionKriging
 import pickle
 import traceback
+from sklearn.linear_model import LinearRegression
+
 import dask.dataframe as dd
 # from skgstat import Variogram, OrdinaryKriging as SKGOrdinaryKriging
-from sklearn.linear_model import LinearRegression
 
 
 
@@ -67,7 +68,8 @@ def save_grid(grid, file_name):
         # Convert MaskedArray to ndarray
         if isinstance(grid, np.ma.MaskedArray):
             grid = grid.filled(np.nan)
-        np.save(file_name, grid)
+        grid_df = pd.DataFrame(grid)
+        grid_df.to_csv(file_name, index=False)
         print(f"Interpolated grid saved as {file_name}.")
     except Exception as e:
         print("Error saving grid:", e)
@@ -97,7 +99,7 @@ def ordinary_kriging(x, y, z, gridx, gridy):
 
     try:
         z_pred, ss = ok.execute('grid', gridx, gridy)
-        save_grid(z_pred, 'ordinary_kriging_grid.npy')
+        save_grid(z_pred, 'ordinary_kriging_grid.csv')
     except Exception as e:
         print("Error in predicting Ordinary Kriging grid:", e)
         with open('error_log.txt', 'a') as f:
@@ -126,7 +128,7 @@ def universal_kriging(x, y, z, gridx, gridy):
 
     try:
         z_pred, ss = uk.execute('grid', gridx, gridy)
-        save_grid(z_pred, 'universal_kriging_grid.npy')
+        save_grid(z_pred, 'universal_kriging_grid.csv')
     except Exception as e:
         print("Error in predicting Universal Kriging grid:", e)
         with open('error_log.txt', 'a') as f:
