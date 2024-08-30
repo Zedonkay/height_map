@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # Read the CSV file
-data = pd.read_csv('formatted_data_no_bump.csv')
+data = pd.read_csv('formatted_data_bump.csv')
 
 # Extract the x, y, and z columns
 x = data['x']
@@ -22,4 +22,6 @@ ax.set_zlabel('Z')
 ax.set_title('3D Scatter Plot')
 
 # Show the plot
-plt.show()
+plt.savefig('bump.png')
+plt.close()
+plt.cfa()

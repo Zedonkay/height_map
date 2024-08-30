@@ -13,13 +13,7 @@ def plot_grid(file_name, title,savename):
     """
     try:
         # Load the grid data from the CSV file
-        grid_df = pd.read_csv(file_name)
-        
-        # Create a meshgrid for plotting
-        x = grid_df.columns.astype(float).values
-        y = grid_df.index.astype(float).values
-        X, Y = np.meshgrid(x, y)
-        Z = grid_df.values
+        x = np.load()
         
         # Plot the grid data
         fig = plt.figure()
@@ -43,15 +37,15 @@ def plot_grid(file_name, title,savename):
 
 def main():
     # Plot the rbf interpolated grid for the no bump data
-    grid_file = 'rbf/no_bump/grid_rbf_no_bump.csv'
+    grid_file = 'rbf/no_bump/grid_'
     plot_grid(grid_file, 'RBF Interpolated Grid - No Bump', 'rbf/no_bump/rbf_no_bump.png')
 
     #Plot the uk interpolated grid for the no bump data
-    grid_file = 'uk/no_bump/grid_uk_no_bump.csv'
+    grid_file = 'uk/no_bump/universal_kriging_grid_'
     plot_grid(grid_file, 'UK Interpolated Grid - No Bump', 'uk/no_bump/uk_no_bump.png')
 
     #plot the ok interpolated grid for the no bump data
-    grid_file = 'ok/no_bump/grid_ok_no_bump.csv'
+    grid_file = 'ok/no_bump/ordinary_kriging_grid_'
     plot_grid(grid_file, 'OK Interpolated Grid - No Bump', 'ok/no_bump/ok_no_bump.png')
 
 if __name__ == '__main__':

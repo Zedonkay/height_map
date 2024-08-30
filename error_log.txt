@@ -18,3 +18,4 @@ Traceback (most recent call last):
     save_grid(z_pred, 'ok/bump/ordinary_kriging_grid')
 TypeError: save_grid() missing 2 required positional arguments: 'gridz' and 'file_name'
 
+Error plotting grid: [Errno 2] No such file or directory: 'rbf/no_bump/grid_rbf_no_bump.csv'

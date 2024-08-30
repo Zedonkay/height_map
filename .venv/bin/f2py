@@ -1,4 +1,4 @@
-#!/home/mamba/ishikhar/height_map/.venv/bin/python
+#!/Users/ishayu/Documents/GitHub/height_map/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
