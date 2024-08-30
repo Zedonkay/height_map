@@ -38,7 +38,14 @@ def save_model(rbf, file_path):
             f.write(error_message)
         print("Failed to save the model. Error message saved in error_log.txt.")
 
-def plot_mesh_grid(rbf_model, x, y):
+def plot_mesh_grid(x, y):
+    # Load the RBF model from the pkl file
+    with open('rbf_model.pkl', 'rb') as f:
+        rbf_model = pickle.load(f)
+        
+    file_path = 'formatted_data.csv'
+    x, y, z = load_data(file_path)
+
     # Define the grid for interpolation
     grid_x, grid_y = np.meshgrid(np.linspace(min(x), max(x), 100), np.linspace(min(y), max(y), 100))
 
@@ -67,8 +74,7 @@ def main():
         model_file_path = 'rbf_model.pkl'
         save_model(rbf, model_file_path)
 
-        # Plot the mesh grid
-        plot_mesh_grid(rbf, x, y)
+
 
 if __name__ == "__main__":
     main()
