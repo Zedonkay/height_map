@@ -1,0 +1,332 @@
+Error loading data: [Errno 2] No such file or directory: '/home/mamba/ishikhar/height_map/your_data.csv'
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 23, in load_data
+    data = dd.read_csv(file_path).compute()
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/dask/dataframe/io/csv.py", line 664, in read
+    **kwargs,
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/dask/dataframe/io/csv.py", line 495, in read_pandas
+    **(storage_options or {}),
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/dask/bytes/core.py", line 125, in read_bytes
+    size = fs.info(path)["size"]
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/fsspec/implementations/local.py", line 80, in info
+    out = os.stat(path, follow_symlinks=False)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mamba/ishikhar/height_map/your_data.csv'
+
+Error saving grid: MaskedArray.tofile() not implemented yet.
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 64, in save_grid
+    np.save(file_name, grid)
+  File "<__array_function__ internals>", line 6, in save
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/numpy/lib/npyio.py", line 529, in save
+    pickle_kwargs=dict(fix_imports=fix_imports))
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/numpy/lib/format.py", line 675, in write_array
+    array.tofile(fp)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/numpy/ma/core.py", line 6116, in tofile
+    raise NotImplementedError("MaskedArray.tofile() not implemented yet.")
+NotImplementedError: MaskedArray.tofile() not implemented yet.
+
+Error in predicting Ordinary Kriging grid: MaskedArray.tofile() not implemented yet.
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 94, in ordinary_kriging
+    save_grid(z_pred, 'ordinary_kriging_grid.npy')
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 64, in save_grid
+    np.save(file_name, grid)
+  File "<__array_function__ internals>", line 6, in save
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/numpy/lib/npyio.py", line 529, in save
+    pickle_kwargs=dict(fix_imports=fix_imports))
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/numpy/lib/format.py", line 675, in write_array
+    array.tofile(fp)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/numpy/ma/core.py", line 6116, in tofile
+    raise NotImplementedError("MaskedArray.tofile() not implemented yet.")
+NotImplementedError: MaskedArray.tofile() not implemented yet.
+
+Error in generating Regression Kriging model: Needs to supply an instance of a scikit-learn regression class.
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 144, in regression_kriging
+    rk = RegressionKriging(regression_model='linear', variogram_model='linear')
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/rk.py", line 81, in __init__
+    check_sklearn_model(regression_model)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/compat.py", line 299, in check_sklearn_model
+    "Needs to supply an instance of a scikit-learn regression class."
+RuntimeError: Needs to supply an instance of a scikit-learn regression class.
+
+Error in generating Regression Kriging model: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 179, in regression_kriging
+    rk.fit(x, y, z)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/rk.py", line 122, in fit
+    self.regression_model.fit(p, y)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/linear_model/_base.py", line 519, in fit
+    y_numeric=True, multi_output=True)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/base.py", line 433, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 878, in check_X_y
+    estimator=estimator)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 698, in check_array
+    "if it contains a single sample.".format(array))
+ValueError: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+Error in generating Regression Kriging model: 2d krige can use only 2d points
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 179, in regression_kriging
+    rk.fit(x, y, z)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/rk.py", line 126, in fit
+    self.krige.fit(x=x, y=y - ml_pred)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/compat.py", line 230, in fit
+    input_kw = self._dimensionality_check(x)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/compat.py", line 238, in _dimensionality_check
+    raise ValueError("2d krige can use only 2d points")
+ValueError: 2d krige can use only 2d points
+
+Error in generating Regression Kriging model: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 179, in regression_kriging
+    rk.fit(x, y, z)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/rk.py", line 122, in fit
+    self.regression_model.fit(p, y)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/linear_model/_base.py", line 519, in fit
+    y_numeric=True, multi_output=True)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/base.py", line 433, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 878, in check_X_y
+    estimator=estimator)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 698, in check_array
+    "if it contains a single sample.".format(array))
+ValueError: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+Error in generating Regression Kriging model: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_2.py", line 87, in regression_kriging
+    rk.fit(x, y, z)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/rk.py", line 122, in fit
+    self.regression_model.fit(p, y)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/linear_model/_base.py", line 519, in fit
+    y_numeric=True, multi_output=True)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/base.py", line 433, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 878, in check_X_y
+    estimator=estimator)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 698, in check_array
+    "if it contains a single sample.".format(array))
+ValueError: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+Error in generating Regression Kriging model: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_2.py", line 87, in regression_kriging
+    rk.fit(x, y, z)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/rk.py", line 122, in fit
+    self.regression_model.fit(p, y)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/linear_model/_base.py", line 519, in fit
+    y_numeric=True, multi_output=True)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/base.py", line 433, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 878, in check_X_y
+    estimator=estimator)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/sklearn/utils/validation.py", line 698, in check_array
+    "if it contains a single sample.".format(array))
+ValueError: Expected 2D array, got 1D array instead:
+array=[ 225.26786547  319.19256597 -193.13299322  812.4086613   131.21261973
+ -307.31775888 -191.36365849 -540.27085186 -742.30094292 -717.73540865
+ -355.38513065  761.32537447  295.7393006    42.24012613  -10.02894583
+  257.28728057  656.13523484   96.09555266  407.23810652  436.81879651
+  554.07667283  600.59854557  683.05475331  737.56012594  861.7631551
+  887.10765408  889.24017575  752.81016166  556.31378812  424.42811717
+  590.14644391  461.97318296  860.59136804 -953.11601357 -852.29116464
+ -611.8204401  -681.13336103  626.4724097   454.14195314  646.76385262
+  192.36973457  251.49989223  608.76300122  365.50620506   75.36094839
+  559.41319301  443.95967673  374.72799995 -229.19714435 -238.39585022
+   52.50261487  385.31209814  319.21117018 -355.3645959   761.0670737
+  295.67035306   42.29369803   -9.83564104  257.15754397  656.0289029
+   96.10590455  407.25201255  436.86464974 -193.11922069  554.12255619
+  600.6545521   683.12025036  737.41135234  861.8032076   886.97689706
+  889.2250573   752.5470161   556.23413094  424.40613548  812.19028861
+  590.02545638  461.9654351   860.45588269 -953.09094242 -852.291928
+ -611.81155905 -681.10626144  626.5514114   453.64537025  646.87671375
+  131.26175482  192.38432377  251.54961936  608.67003364  365.52596291
+   75.28201997  559.42768205  443.92463386  374.62677439 -229.16991358
+ -238.36093338 -307.24442956   52.96498471  385.22641906 -191.31188888
+ -540.21867861 -742.24324734 -717.68056101].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+
+Error in generating Regression Kriging model: 2d krige can use only 2d points
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_2.py", line 87, in regression_kriging
+    rk.fit(x, y, z)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/rk.py", line 126, in fit
+    self.krige.fit(x=x, y=y - ml_pred)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/compat.py", line 230, in fit
+    input_kw = self._dimensionality_check(x)
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/pykrige/compat.py", line 238, in _dimensionality_check
+    raise ValueError("2d krige can use only 2d points")
+ValueError: 2d krige can use only 2d points
+

@@ -14,14 +14,14 @@ height = data['pz'].values
 grid_x, grid_y = np.meshgrid(np.linspace(min(x), max(x), 100), np.linspace(min(y), max(y), 100))
 
 # Function to process a batch
-def n(args):
+def process_batch(args):
     start, end = args
     x_batch = x[start:end]
     y_batch = y[start:end]
     height_batch = height[start:end]
     uk = UniversalKriging(x_batch, y_batch, height_batch, variogram_model='linear')
     z_batch, ss_batch = uk.execute('grid', grid_x, grid_y)
-    return z_batch
+    return z_batch, ss_batch
 
 # Batch size
 batch_size = 500
@@ -29,6 +29,7 @@ batch_size = 500
 # Process batches in parallel using multiprocessing
 with Pool() as pool:
     results = pool.map(process_batch, [(i, min(i+batch_size, len(x))) for i in range(0, len(x), batch_size)])
+    z_batch, ss_batch = zip(*results)
 
 # Combine results (consider a different method if averaging is not suitable)
 z_combined = np.mean(results, axis=0)
