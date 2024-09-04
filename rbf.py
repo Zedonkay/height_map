@@ -40,7 +40,7 @@ def save_model(rbf, file_path):
 
 def main():
     # Load data
-    file_path = 'formatted_data_no_bump.csv'
+    file_path = 'formatted_data_bump.csv'
     x, y, z = load_data(file_path)
 
     # Perform RBF Interpolation
@@ -53,12 +53,12 @@ def main():
          # Interpolate the grid
         z_rbf = rbf(grid_x, grid_y)
         # Save the model
-        model_file_path = 'rbf/no_bump/rbf_model_no_bump.pkl'
+        model_file_path = 'rbf/bump/rbf_model_bump.pkl'
         save_model(rbf, model_file_path)
         # Save the grid_x, grid_y, and z_rbf to files
-        np.save('rbf/no_bump/grid_x_no_bump.npy', grid_x)
-        np.save('rbf/no_bump/grid_y_no_bump.npy', grid_y)
-        np.save('rbf/no_bump/z_rbf_no_bump.npy', z_rbf)
+        np.save('rbf/no_bump/grid_x_bump.npy', grid_x)
+        np.save('rbf/no_bump/grid_y_bump.npy', grid_y)
+        np.save('rbf/no_bump/z_rbf_bump.npy', z_rbf)
 
        
 
