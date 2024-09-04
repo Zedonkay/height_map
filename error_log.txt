@@ -1,1 +1,21 @@
-[Errno 2] No such file or directory: 'rbf/no_bump/rbf_model_no_bump.pkl'
+Error loading data: [Errno 2] No such file or directory: '/home/mamba/ishikhar/height_map/formatted_data.csv'
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 27, in load_data
+    data = dd.read_csv(file_path).compute()
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/dask/dataframe/io/csv.py", line 664, in read
+    **kwargs,
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/dask/dataframe/io/csv.py", line 495, in read_pandas
+    **(storage_options or {}),
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/dask/bytes/core.py", line 125, in read_bytes
+    size = fs.info(path)["size"]
+  File "/home/mamba/ishikhar/height_map/.venv/lib/python3.6/site-packages/fsspec/implementations/local.py", line 80, in info
+    out = os.stat(path, follow_symlinks=False)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mamba/ishikhar/height_map/formatted_data.csv'
+
+Error in predicting Ordinary Kriging grid: save_grid() missing 2 required positional arguments: 'gridz' and 'file_name'
+Traceback (most recent call last):
+  File "/home/mamba/ishikhar/height_map/kirging_all.py", line 104, in ordinary_kriging
+    save_grid(z_pred, 'ok/bump/ordinary_kriging_grid')
+TypeError: save_grid() missing 2 required positional arguments: 'gridz' and 'file_name'
+
+Error plotting grid: [Errno 2] No such file or directory: 'rbf/no_bump/grid_rbf_no_bump.csv'
