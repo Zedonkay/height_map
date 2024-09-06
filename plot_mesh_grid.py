@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.interpolate import griddata
 
 def plot_grid(filename_grid, filename, title):
     # Load the saved grid_x, grid_y, and z_rbf from files
@@ -28,9 +29,7 @@ def plot_grid(filename_grid, filename, title):
     plt.savefig(save_file_svg, format='svg')
 
 def plot_sim_grid(filename_grid, filename, title):
-    grid_x=np.load(filename_grid + "x" + ".npy")
-    grid_y=np.load(filename_grid + "y" + ".npy")
-    grid_z = np.load(filename_grid + "z" + ".npy")
+    grid_x, grid_y, grid_z = get_sim_points()
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(grid_x, grid_y, grid_z)
@@ -75,6 +74,23 @@ def add_constant_to_grids(filename):
     
     # Return the updated grids
     return grid_x, grid_y, grid_z
+
+def get_sim_points():
+    data = np.loadtxt('sim_terrain.csv', delimiter=',')
+    # Separate the x, y, and z coordinates
+    points = data[:, :2]
+    values = data[:, 2]
+    x=np.linspace(points[:,0].min(), points[:,0].max(), 100)
+    y=np.linspace(points[:,1].min(), points[:,1].max(), 100)
+    z = np.zeros((len(x), len(y)))
+    for i in range(len(x)):
+        for j in range(len(y)):
+            z[i, j] = get_z_value(points, values, x[i], y[j])
+    return x, y, z
+
+# Define the function to get the z-value for given x and y
+def get_z_value(points,values,x, y):
+    return griddata(points, values, (x, y), method='linear')
 
 def main():
     plot_rbf()
