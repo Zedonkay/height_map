@@ -15,7 +15,6 @@ def plot_grid(filename_grid, filename, title):
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
     ax.set_title(title)
-
     ax.set_xlim([np.min(grid_x), np.max(grid_x)])
     ax.set_ylim([np.min(grid_y), np.max(grid_y)])
     ax.set_zlim([np.min(grid_z), np.max(grid_z)*2.5])
@@ -28,6 +27,25 @@ def plot_grid(filename_grid, filename, title):
     save_file_svg = filename + '.svg'
     plt.savefig(save_file_svg, format='svg')
 
+def plot_sim_grid(filename_grid, filename, title):
+    grid_x=np.load(filename_grid + "x" + ".npy")
+    grid_y=np.load(filename_grid + "y" + ".npy")
+    grid_z = np.load(filename_grid + "z" + ".npy")
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(grid_x, grid_y, grid_z)
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    ax.set_title(title)
+
+    # Save the plot as PNG
+    save_file_png = filename + '.png'
+    plt.savefig(save_file_png)
+
+    # Save the plot as SVG
+    save_file_svg = filename + '.svg'
+    plt.savefig(save_file_svg, format='svg')
 def plot_rbf():
     # # Plot the rbf interpolated grid for the no bump data
     # grid_file = 'rbf/no_bump/rbf_grid_'
@@ -38,6 +56,10 @@ def plot_rbf():
     grid_file = 'rbf/bump/rbf_grid_'
     plot_file= 'rbf/bump/rbf_plot'
     plot_grid(grid_file, plot_file,'Extracted Terrain Model')
+
+    grid_file = 'rbf/sim/rbf_grid_'
+    plot_file= 'rbf/sim/rbf_plot'
+    plot_sim_grid(grid_file, plot_file,'Simulated Terrain Model')
 
 def add_constant_to_grids(filename):
     # Load the saved grid_x, grid_y, and z_rbf from files

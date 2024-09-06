@@ -47,7 +47,7 @@ def main():
     rbf = perform_rbf_interpolation(x, y, z)
 
     # Define the grid for interpolation
-    grid_x, grid_y = np.meshgrid(np.linspace(min(x), max(x), 100), np.linspace(min(y), max(y), 100))
+    grid_x, grid_y = np.meshgrid(np.linspace(min(x), max(x), 500), np.linspace(min(y), max(y), 500))
 
     if rbf is not None:
          # Interpolate the grid
